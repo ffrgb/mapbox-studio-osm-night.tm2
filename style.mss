@@ -7,8 +7,8 @@
 // Eg. @water is used in the #water and #waterway layers directly, but
 // also in the #water_label and #waterway_label layers inside a color
 // manipulation function to get a darker shade of the same hue.
-@land: #f8f4f0;
-@water: #a0c8f0;
+@land: #0d151c;
+@water: #2A3540;
 
 @state_text:        #765;
 @state_halo:        @place_halo;
@@ -44,7 +44,7 @@ Map {
   text-face-name: @sans_lt;
   text-placement: point;
   text-fill: @state_text;
-  text-halo-fill: fadeout(lighten(@land,5%),50%);
+  text-halo-fill: fadeout(darken(@land,5%),50%);
   text-halo-radius: 1;
   text-halo-rasterizer: fast;
   text-size: 9;
@@ -75,12 +75,12 @@ Map {
 }
 
 // ---------------------------------------------------------------------
-// Water Features 
+// Water Features
 
 #water {
   polygon-fill: @water - #111;
-  // Map tiles are 256 pixels by 256 pixels wide, so the height 
-  // and width of tiling pattern images must be factors of 256. 
+  // Map tiles are 256 pixels by 256 pixels wide, so the height
+  // and width of tiling pattern images must be factors of 256.
   polygon-pattern-file: url(pattern/wave.png);
   [zoom<=5] {
     // Below zoom level 5 we use Natural Earth data for water,
@@ -121,26 +121,26 @@ Map {
 }
 
 // ---------------------------------------------------------------------
-// Landuse areas 
+// Landuse areas
 
 #landuse {
   // Land-use and land-cover are not well-separated concepts in
   // OpenStreetMap, so this layer includes both. The 'class' field
   // is a highly opinionated simplification of the myriad LULC
   // tag combinations into a limited set of general classes.
-  [class='park'] { polygon-fill: #d8e8c8; }
-  [class='cemetery'] { polygon-fill: mix(#d8e8c8, #ddd, 25%); }
-  [class='hospital'] { polygon-fill: #fde; }
-  [class='school'] { polygon-fill: #f0e8f8; }
+  [class='park'] { polygon-fill: #000e00; }
+  [class='cemetery'] { polygon-fill: mix(#0e0813, #222, 25%); }
+  [class='hospital'] { polygon-fill: #230011; }
+  [class='school'] { polygon-fill: #0F1707; }
   ::overlay {
     // Landuse classes look better as a transparent overlay.
     opacity: 0.1;
-    [class='wood'] { polygon-fill: #6a4; polygon-gamma: 0.5; }
+    [class='wood'] { polygon-fill: #070c05; polygon-gamma: 0.5; }
   }
 }
 
 // ---------------------------------------------------------------------
-// Buildings 
+// Buildings
 
 #building [zoom<=17]{
   // At zoom level 13, only large buildings are included in the
@@ -155,7 +155,7 @@ Map {
 ::roof {
   polygon-fill: darken(@land, 5%);
   polygon-geometry-transform:translate(-1,-1.5);
-  polygon-clip:false;  
+  polygon-clip:false;
   line-width: 0.5;
   line-color: mix(@land, #000, 85);
   line-geometry-transform:translate(-1,-1.5);
@@ -164,22 +164,22 @@ Map {
 }
 
 // ---------------------------------------------------------------------
-// Aeroways 
+// Aeroways
 
 #aeroway [zoom>=12] {
   ['mapnik::geometry_type'=2] {
     line-color: @land * 0.96;
-    [type='runway'] { line-width: 5; }    
-    [type='taxiway'] {  
+    [type='runway'] { line-width: 5; }
+    [type='taxiway'] {
       line-width: 1;
       [zoom>=15] { line-width: 2; }
     }
-  }    
+  }
   ['mapnik::geometry_type'=3] {
     polygon-fill: @land * 0.96;
     [type='apron'] {
-      polygon-fill: @land * 0.98;  
-    }  
+      polygon-fill: @land * 0.98;
+    }
   }
 }
 

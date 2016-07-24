@@ -14,7 +14,7 @@
 // - French: '[name_fr]'
 // - Spanish: '[name_es]'
 // - German: '[name_de]'
-@name: '[name_en]';  
+@name: '[name_de]';
 
 
 // ---------------------------------------------------------------------
@@ -30,7 +30,7 @@
 @sans_lt_italic: 'Open Sans Light Italic', @fallback;
 @sans_lt: 'Open Sans Light', @fallback;
 
-@place_halo:        #fff;
+@place_halo:        #bbb;
 @country_text:      @land * 0.2;
 @country_halo:      @place_halo;
 
@@ -47,8 +47,8 @@
   [zoom=2] { text-face-name: @sans; }
   text-placement: point;
   text-size: 9;
-  text-fill: @country_text;
-  text-halo-fill: @country_halo;
+  text-fill: #eee;
+  text-halo-fill: #222;
   text-halo-radius: 1;
   text-halo-rasterizer: fast;
   text-wrap-width: 20;
@@ -104,7 +104,7 @@
 #marine_label[zoom>=2]["mapnik::geometry_type"=2] {
   text-name: @name;
   text-face-name: @sans_lt_italic;
-  text-fill: lighten(@water,20);
+  text-fill: darken(@water,20);
   ["mapnik::geometry_type"=1] {
     text-placement: point;
     text-wrap-width: 30;
@@ -162,7 +162,6 @@
     shield-face-name: @sans;
     shield-placement: point;
     shield-fill: #333;
-    shield-halo-fill: fadeout(#fff, 50%);
     shield-halo-radius: 1;
     shield-halo-rasterizer: fast;
     [ldir='E'] { shield-text-dx: 5; }
@@ -181,19 +180,16 @@
   text-face-name: @sans;
   text-wrap-width: 120;
   text-wrap-before: true;
-  text-fill: #333;
-  text-halo-fill: fadeout(#fff, 50%);
-  text-halo-radius: 1;
-  text-halo-rasterizer: fast;
+  text-fill: #eee;
   text-size: 10;
   [type='city'][zoom>=8][zoom<=15] {
   	text-face-name: @sans_md;
     text-size: 16;
-    [zoom>=10] { 
+    [zoom>=10] {
       text-size: 18;
       text-wrap-width: 140;
     }
-    [zoom>=12] { 
+    [zoom>=12] {
       text-size: 24;
       text-wrap-width: 180;
     }
@@ -217,7 +213,7 @@
   [type='hamlet'],
   [type='suburb'],
   [type='neighbourhood'] {
-    text-fill: #633;
+    text-fill: #99CCCC;
     text-face-name:	@sans_bd;
     text-transform: uppercase;
     text-character-spacing: 0.5;
@@ -244,15 +240,17 @@
     // can use that in our url expression.
     // Not all POIs have a Maki icon assigned, so we limit this section
     // to those that do. See also <https://www.mapbox.com/maki/>
-    marker-fill:#666;
+    marker-fill:#aaa;
     marker-file:url('icon/[maki]-12.svg');
+    opacity: .7;
   }
   ::label {
+    opacity: .4;
     text-name: @name;
     text-face-name: @sans_md;
-    text-size: 12;
-    text-fill: #666;
-    text-halo-fill: fadeout(#fff, 50%);
+    text-size: 10;
+    text-fill: #aaa;
+    text-halo-fill: fadeout(#000, 50%);
     text-halo-radius: 1;
     text-halo-rasterizer: fast;
     text-wrap-width: 70;
@@ -298,8 +296,8 @@
   text-name: @name;
   text-placement: line;  // text follows line path
   text-face-name: @sans;
-  text-fill: #765;
-  text-halo-fill: fadeout(#fff, 50%);
+  text-fill: #8899AA;
+  text-halo-fill: fadeout(#000, 50%);
   text-halo-radius: 1;
   text-halo-rasterizer: fast;
   text-size: 12;
@@ -322,7 +320,7 @@
     text-size: 12;
     text-wrap-width: 100;
     text-wrap-before: true;
-    text-halo-fill: fadeout(#fff, 75%);
+    text-halo-fill: fadeout(@water, 75%);
     text-halo-radius: 1.5;
   }
 }
@@ -333,8 +331,8 @@
 
 #housenum_label[zoom>=18] {
   text-name: [house_num];
-  text-face-name: @sans_it;
-  text-fill: #cba;
+  text-face-name: @sans;
+  text-fill: #334455;
   text-size: 8;
   [zoom=19] { text-size: 10; }
   [zoom>=20] { text-size: 12; }

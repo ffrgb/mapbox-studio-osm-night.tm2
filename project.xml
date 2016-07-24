@@ -41,13 +41,13 @@
 <Style name="landuse-overlay" filter-mode="first" opacity="0.1">
   <Rule>
     <Filter>([class] = 'wood')</Filter>
-    <PolygonSymbolizer fill="#66aa44" gamma="0.5" />
+    <PolygonSymbolizer fill="#9955BB" gamma="0.5" />
   </Rule>
 </Style>
 <Style name="landuse" filter-mode="first">
   <Rule>
     <Filter>([class] = 'school')</Filter>
-    <PolygonSymbolizer fill="#f0e8f8" />
+    <PolygonSymbolizer fill="#0F1707" />
   </Rule>
   <Rule>
     <Filter>([class] = 'hospital')</Filter>
@@ -55,11 +55,11 @@
   </Rule>
   <Rule>
     <Filter>([class] = 'cemetery')</Filter>
-    <PolygonSymbolizer fill="#dce0d8" />
+    <PolygonSymbolizer fill="#231F27" />
   </Rule>
   <Rule>
     <Filter>([class] = 'park')</Filter>
-    <PolygonSymbolizer fill="#d8e8c8" />
+    <PolygonSymbolizer fill="#271737" />
   </Rule>
 </Style>
 <Layer name="landuse"

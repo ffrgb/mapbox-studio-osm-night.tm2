@@ -1,8 +1,8 @@
 // Basic color palette, from which variations will be derived.
-@motorway:          #fc8;
-@main:              #fea;
-@street:            #fff;
-@street_limited:    #f3f3f3;
+@motorway:          #000d42;
+@main:              #012;
+@street:            #000;
+@street_limited:    #080808;
 
 // ---------------------------------------------------------------------
 
@@ -13,10 +13,10 @@
 // rendering of multi-level overpasses.
 
 // The main road style is for all 3 road layers and divided into 2 main
-// attachments. The 'case' attachment is 
+// attachments. The 'case' attachment is
 
 #road, #bridge, #tunnel {
-  
+
   // casing/outlines & single lines
   ::case[zoom>=6]['mapnik::geometry_type'=2] {
     [class='motorway'] {
@@ -76,20 +76,20 @@
       [zoom>=16] { line-width:4; }
     }
     [class='path'][zoom>=15] {
-      line-color: #cba;
+      line-color: #3e3225;
       line-dasharray: 2,1;
       [zoom>=16] { line-width: 1.2; }
       [zoom>=17] { line-width: 1.5; }
     }
   }
-  
+
   // fill/inlines
   ::fill[zoom>=6]['mapnik::geometry_type'=2] {
     [class='motorway'][zoom>=8] {
       line-join:round;
       #road, #bridge { line-cap:round; }
-      line-color:@motorway;
-      #tunnel { line-color:lighten(@motorway,4); }
+      line-color: @motorway;
+      #tunnel { line-color:darken(@motorway,4); }
       [zoom>=8] { line-width:0.5; }
       [zoom>=10] { line-width:1; }
       [zoom>=13] { line-width:2; }
@@ -100,8 +100,8 @@
     [class='motorway_link'][zoom>=14] {
       line-join:round;
       #road, #bridge { line-cap: round; }
-      line-color:@motorway;
-      #tunnel {  line-color:lighten(@motorway,4); }
+      line-color: @motorway;
+      #tunnel {  line-color:darken(@motorway,4); }
       [zoom>=14] { line-width:1.5; }
       [zoom>=15] { line-width:3; }
       [zoom>=16] { line-width:4.5; }
@@ -110,7 +110,7 @@
       line-join:round;
       #road, #bridge { line-cap: round; }
       line-color:@main;
-      #tunnel { line-color:lighten(@main,4); }
+      #tunnel { line-color:darken(@main,4); }
       [zoom>=8] { line-width:0.5; }
       [zoom>=10] { line-width:1; }
       [zoom>=13] { line-width:1.5; }
@@ -121,28 +121,28 @@
     [class='street'][zoom>=15], {
       line-join:round;
       #road, #bridge { line-cap: round; }
-      [zoom>=15] { line-width:2.5; line-color:#fff; }
+      [zoom>=15] { line-width:2.5; line-color:#000; }
       [zoom>=16] { line-width:4; }
     }
     [class='street_limited'][zoom>=15], {
       line-join:round;
       #road, #bridge { line-cap: round; }
-      [zoom>=15] { line-width:2.5; line-color:#eee; }
+      [zoom>=15] { line-width:2.5; line-color:#111; }
       [zoom>=16] { line-width:4; }
     }
     [class='service'][zoom>=16], {
       line-join:round;
       #road, #bridge { line-cap: round; }
-      [zoom>=16] { line-width:2; line-color:#fff; }
+      [zoom>=16] { line-width:2; line-color:#000; }
     }
     [class='major_rail'] {
       line-width: 0.4;
-      line-color: #bbb;
+      line-color: #444;
       [zoom>=16] {
         line-width: 0.75;
       	// Hatching
       	h/line-width: 3;
-      	h/line-color: #bbb;
+      	h/line-color: #444;
       	h/line-dasharray: 1,31;
       }
     }
